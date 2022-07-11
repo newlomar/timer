@@ -2,21 +2,29 @@ const relogio = document.querySelector('[data-js="relogio"]');
 const botao_iniciar = document.querySelector('[data-js="botao-iniciar"]');
 const botao_pausar = document.querySelector('[data-js="botao-pausar"]');
 const botao_zerar = document.querySelector('[data-js="botao-zerar"]');
+const body = document.querySelector('body');
 
 let interval;
+
+body.addEventListener('click', function (e) {
+  const elemento = e.target;
+});
 
 botao_iniciar.addEventListener('click', function () {
   clearInterval(interval);
   interval = setInterval(atualizarRelogio, 1000);
+  relogio.classList.remove('pausado');
 });
 
 botao_pausar.addEventListener('click', function () {
   clearInterval(interval);
+  relogio.classList.add('pausado');
 });
 
 botao_zerar.addEventListener('click', function () {
   clearInterval(interval);
   relogio.textContent = '00:00:00';
+  relogio.classList.remove('pausado');
 });
 
 function atualizarRelogio() {

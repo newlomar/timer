@@ -3,8 +3,23 @@ const botao_iniciar = document.querySelector('[data-js="botao-iniciar"]');
 const botao_pausar = document.querySelector('[data-js="botao-pausar"]');
 const botao_zerar = document.querySelector('[data-js="botao-zerar"]');
 
+let interval;
+
+botao_iniciar.addEventListener('click', function () {
+  clearInterval(interval);
+  interval = setInterval(atualizarRelogio, 1000);
+});
+
+botao_pausar.addEventListener('click', function () {
+  clearInterval(interval);
+});
+
+botao_zerar.addEventListener('click', function () {
+  clearInterval(interval);
+  relogio.textContent = '00:00:00';
+});
+
 function atualizarRelogio() {
-  const relogioAtual = relogio.textContent;
   const horas = Number(relogio.textContent.split(':')[0]);
   const minutos = Number(relogio.textContent.split(':')[1]);
   const segundos = Number(relogio.textContent.split(':')[2]);
@@ -26,5 +41,3 @@ function atualizarRelogio() {
 
   relogio.textContent = `${stringHoras}:${stringMinutos}:${stringSegundos}`;
 }
-
-setInterval(atualizarRelogio, 1000);

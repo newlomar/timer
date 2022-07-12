@@ -8,23 +8,23 @@ let interval;
 
 body.addEventListener('click', function (e) {
   const elemento = e.target;
-});
 
-botao_iniciar.addEventListener('click', function () {
-  clearInterval(interval);
-  interval = setInterval(atualizarRelogio, 1000);
-  relogio.classList.remove('pausado');
-});
+  if (elemento.parentElement.attributes['data-js'].value === 'botao-iniciar') {
+    clearInterval(interval);
+    interval = setInterval(atualizarRelogio, 1000);
+    relogio.classList.remove('pausado');
+  }
 
-botao_pausar.addEventListener('click', function () {
-  clearInterval(interval);
-  relogio.classList.add('pausado');
-});
+  if (elemento.parentElement.attributes['data-js'].value === 'botao-pausar') {
+    clearInterval(interval);
+    relogio.classList.add('pausado');
+  }
 
-botao_zerar.addEventListener('click', function () {
-  clearInterval(interval);
-  relogio.textContent = '00:00:00';
-  relogio.classList.remove('pausado');
+  if (elemento.parentElement.attributes['data-js'].value === 'botao-zerar') {
+    clearInterval(interval);
+    relogio.textContent = '00:00:00';
+    relogio.classList.remove('pausado');
+  }
 });
 
 function atualizarRelogio() {
